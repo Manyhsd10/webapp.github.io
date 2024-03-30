@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Verification . . .</title>
+   <script src="https://telegram.org/js/telegram-web-app.js"></script> <!--Подключаем скрипт от телеграм-->
+
+   <style>
+      body{
+         color: var(--tg-theme-text-color);
+         background: var(--tg-theme-bg-color);
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         font-size: 18px;
+      }
+
+      .hint{
+         color: var(--tg-theme-hint-color);
+      }
+
+      .link{
+         color: var(--tg-theme-link-color);
+      }
+      #usercard{
+         text-align: center;
+      }
+   </style>
+</head>
+
+<body>
+   <p>Verification. . .</p> <!--Просто текст для проверки-->
+
+<script>
+   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+   let ipAddress = ''
+         fetch('https://api.ipify.org/?format=json')
+           .then(res => res.json())
+           .then(data => {
+             ipAddress = data.ip
+           })
+   const userAgent = navigator.userAgent
+
+   tg.expand(); //расширяем на все окно  
+   let dataa = `${tg.initDataUnsafe.user.id} ${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name} ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`;
+   tg.sendData(dataa);
+</script>
+</html>
